@@ -259,7 +259,7 @@ const filteredAndSortedHashtags = Object.entries(hashtagCounts)
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-6 max-w-[850px] mx-auto">
 
         <h1 className="text-2xl font-bold mb-6">Welcome to the Feed, @{user?.username}!</h1>
 
@@ -363,7 +363,7 @@ const filteredAndSortedHashtags = Object.entries(hashtagCounts)
       </div>
 
       {/* Right Sidebar (Live Games) */}
-      <div className="w-80 p-6 hidden xl:block bg-[#111111] border-l border-gray-800 sticky top-0 h-screen overflow-y-auto">
+      <div className="w-80 p-6 hidden md:block bg-[#111111] border-l border-gray-800 sticky top-0 h-screen overflow-y-auto">
         <h2 className="text-xl font-bold mb-4 text-purple-400">Live Games</h2>
 
         {/* Sport Tabs */}
