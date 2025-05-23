@@ -8,8 +8,4 @@ python-multipart
 python-dotenv
 databases
 pydantic
-<<<<<<< HEAD
 pydantic[email]
-=======
-pydantic[email]
->>>>>>> 422e15a (Add .env file and updated API baseURL)
