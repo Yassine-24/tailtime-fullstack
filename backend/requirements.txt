@@ -8,8 +8,4 @@ python-multipart
 python-dotenv
 databases
 pydantic
-<<<<<<< HEAD
 pydantic[email]
-=======
-pydantic[email]
->>>>>>> a8e1baef75f2663c77662c76968356930bd66cb0
