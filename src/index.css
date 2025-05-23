@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ticket-button {
+  @apply relative inline-flex items-center justify-center px-5 py-2 text-xs font-semibold border border-purple-400 bg-gray-800 transition-all shadow-sm hover:shadow-md;
+  border-radius: 0.5rem; /* rounded-md style: subtle but not full circle */
+}
