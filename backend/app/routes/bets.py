@@ -11,11 +11,13 @@ import shutil
 import uuid
 import os
 from typing import List
+from fastapi import Request
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
 
 @router.post("/")
 async def create_bet(
+    request: Request,  # ✅ Add request to access base URL
     content: str = Form(...),
     hashtag: str = Form(...),
     bet_type: str = Form(...),
@@ -31,7 +33,9 @@ async def create_bet(
         os.makedirs("static", exist_ok=True)
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(image.file, buffer)
-        image_url = file_path
+        
+        # ✅ Use full URL to make it accessible on frontend
+        image_url = f"{request.base_url}static/{filename}"
 
     new_bet = models.Bet(
         content=content,
@@ -44,6 +48,7 @@ async def create_bet(
     db.add(new_bet)
     db.commit()
     db.refresh(new_bet)
+
     return {
         "id": new_bet.id,
         "content": new_bet.content,
