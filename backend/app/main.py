@@ -21,7 +21,10 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # CORS setup for frontend
-origins = ["http://localhost:5173"]
+origins = [
+    "http://localhost:5173",             # for local dev
+    "https://tailtime.netlify.app"       # ✅ add your Netlify frontend
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
