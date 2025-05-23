@@ -73,7 +73,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
           <div className="flex items-center gap-3 mb-2 text-sm text-gray-400">
             {bet.user.profile_image_url ? (
               <img
-                src={`http://localhost:8000/static/${bet.user.profile_image_url.replace(/^static\//, '')}`}
+                src={`${import.meta.env.VITE_API_URL}/${bet.user.profile_image_url.replace(/^static\//, '')}`}
                 alt="user"
                 className="w-9 h-9 rounded-full object-cover"
               />
@@ -112,7 +112,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
               onClick={() => setShowImageModal(true)}
             >
               <img
-                src={`http://localhost:8000/${bet.image_url}`}
+                src={`${import.meta.env.VITE_API_URL}/${bet.image_url}`}
                 alt="bet"
                 className="rounded-md object-contain max-h-[350px] w-full"
               />
@@ -177,7 +177,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
           onClick={() => setShowImageModal(false)}
         >
           <img
-            src={`http://localhost:8000/${bet.image_url}`}
+            src={`${import.meta.env.VITE_API_URL}/${bet.image_url}`}
             alt="enlarged bet"
             className="max-w-4xl w-full h-auto rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}

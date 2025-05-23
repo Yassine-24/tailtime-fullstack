@@ -7,6 +7,8 @@ from app.models.vote import Vote
 from app.models.models import Bet
 from app.models.follow import Follow  # added for follow feature
 from app.oauth2 import get_current_user  # type: ignore
+from fastapi import Request
+
 import shutil
 import uuid
 import os
@@ -20,7 +22,8 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 def upload_profile_picture(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
+    request: Request = None  # ✅ Add this
 ):
     ext = os.path.splitext(file.filename)[-1]
     filename = f"{uuid.uuid4()}{ext}"
@@ -29,10 +32,12 @@ def upload_profile_picture(
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    current_user.profile_image_url = f"profile_pics/{filename}"
+    public_url = f"{request.base_url}static/profile_pics/{filename}"
+    current_user.profile_image_url = public_url
     db.commit()
 
     return {"profile_image_url": current_user.profile_image_url}
+
 
 @router.get("/users/me", response_model=UserOut)
 def get_my_profile(
