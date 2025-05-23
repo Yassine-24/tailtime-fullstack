@@ -144,7 +144,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
         </div>
 
         {/* Right - Comments Preview */}
-        <div className="w-64 bg-gray-800 rounded-lg p-4 shadow-inner overflow-y-auto max-h-[400px] flex flex-col justify-between">
+        <div className="w-64 bg-gray-800 rounded-lg p-4 shadow-inner overflow-y-auto max-h-[400px] flex-col justify-between hidden md:flex">
           <div>
             <h3 className="text-xs font-bold text-purple-400 mb-2">Top Comments</h3>
             <ul className="space-y-3 text-sm text-gray-300">

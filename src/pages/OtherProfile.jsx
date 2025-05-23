@@ -82,7 +82,7 @@ const OtherProfile = () => {
       <div className="flex flex-col items-center mb-10">
         {userData.profile_image_url ? (
           <img
-            src={`http://localhost:8000/static/${userData.profile_image_url.replace(/^static\//, '')}`}
+            src={`${import.meta.env.VITE_API_URL}/${bet.user.profile_image_url.replace(/^static\//, '')}`}
             alt="profile"
             className="w-24 h-24 rounded-full object-cover border-4 border-purple-500 mb-4"
           />

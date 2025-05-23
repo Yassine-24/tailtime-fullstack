@@ -1,12 +1,19 @@
-import React, { useState, useContext } from 'react'; 
+import React, { useState, useContext, useEffect } from 'react'; 
 import AuthContext from '../context/AuthContext.jsx';
 import API from '../services/api';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
-  const { login } = useContext(AuthContext);
+  const { login, token } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // ✅ Redirect if already logged in
+  useEffect(() => {
+    if (token) {
+      navigate('/feed');
+    }
+  }, [token, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +21,6 @@ const Login = () => {
       const res = await API.post('/auth/login', form);
       const token = res.data.access_token;
 
-      // 🔥 FIX: Fetch actual user data instead of hardcoding username
       const userRes = await API.get('/users/me', {
         headers: {
           Authorization: `Bearer ${token}`
@@ -22,7 +28,7 @@ const Login = () => {
       });
 
       login(userRes.data, token);
-      localStorage.setItem('token', token);  // store the real user
+      localStorage.setItem('token', token);
       navigate('/feed');
     } catch (err) {
       alert('Login failed');

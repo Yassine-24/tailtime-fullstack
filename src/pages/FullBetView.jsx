@@ -73,7 +73,7 @@ const FullBetView = () => {
           <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
             {bet.user?.profile_image_url ? (
               <img
-                src={`http://localhost:8000/static/${bet.user.profile_image_url.replace(/^static\//, '')}`}
+                src={`${import.meta.env.VITE_API_URL}/${bet.user.profile_image_url.replace(/^static\//, '')}`}
                 alt="user"
                 className="w-9 h-9 rounded-full object-cover"
               />
@@ -105,7 +105,7 @@ const FullBetView = () => {
           {bet.image_url && (
             <div className="mb-3 flex justify-center cursor-pointer">
               <img
-                src={`http://localhost:8000/${bet.image_url}`}
+                src={`${import.meta.env.VITE_API_URL}/${imagePath.replace(/^static\//, '')}`}
                 alt="bet"
                 className="rounded-md object-contain max-h-[500px]"
               />
