@@ -112,7 +112,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
               onClick={() => setShowImageModal(true)}
             >
               <img
-                src={`${import.meta.env.VITE_API_URL}/${bet.image_url}`}
+                src={bet.image_url.startsWith('http') ? bet.image_url : `${import.meta.env.VITE_API_URL}/${bet.image_url}`}
                 alt="bet"
                 className="rounded-md object-contain max-h-[350px] w-full"
               />
@@ -177,7 +177,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
           onClick={() => setShowImageModal(false)}
         >
           <img
-            src={`${import.meta.env.VITE_API_URL}/${bet.image_url}`}
+            src={bet.image_url.startsWith('http') ? bet.image_url : `${import.meta.env.VITE_API_URL}/${bet.image_url}`}
             alt="enlarged bet"
             className="max-w-4xl w-full h-auto rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}
