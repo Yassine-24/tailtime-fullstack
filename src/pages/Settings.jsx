@@ -101,7 +101,9 @@ const Settings = () => {
             <h2 className="text-2xl font-bold mb-4">Profile Picture</h2>
             {userInfo?.profile_image_url ? (
               <img
-                src={`${import.meta.env.VITE_API_URL}/static/${userInfo.profile_image_url?.replace(/^static\//, '')}`}
+                src={userInfo.profile_image_url?.startsWith('http') 
+                ? userInfo.profile_image_url 
+                : `${import.meta.env.VITE_API_URL}/${userInfo.profile_image_url}`}
                 alt="Profile"
                 className="w-32 h-32 rounded-full object-cover mb-4"
               />
