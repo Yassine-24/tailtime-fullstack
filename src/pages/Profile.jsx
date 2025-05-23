@@ -59,7 +59,7 @@ const Profile = () => {
               key={bet.id}
               bet={bet}
               vote={votes[bet.id] ?? null}
-              onVoteMade={() => fetchProfile()}
+              onVoteMade={fetchProfile}
             />
           )
         )}

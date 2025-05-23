@@ -73,7 +73,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
           <div className="flex items-center gap-3 mb-2 text-sm text-gray-400">
             {bet.user.profile_image_url ? (
               <img
-                src={`${import.meta.env.VITE_API_URL}/${bet.user.profile_image_url.replace(/^static\//, '')}`}
+                src={bet.user.profile_image_url}
                 alt="user"
                 className="w-9 h-9 rounded-full object-cover"
               />
@@ -177,7 +177,7 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
           onClick={() => setShowImageModal(false)}
         >
           <img
-            src={bet.image_url.startsWith('http') ? bet.image_url : `${import.meta.env.VITE_API_URL}/${bet.image_url}`}
+            src={bet.image_url}
             alt="enlarged bet"
             className="max-w-4xl w-full h-auto rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}
