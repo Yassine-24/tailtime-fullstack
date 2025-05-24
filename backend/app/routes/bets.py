@@ -7,6 +7,7 @@ from app.models.follow import Follow  # ✅ import Follow model
 from app.oauth2 import get_current_user
 from app.schemas.schemas import BetOut
 from app.models.comment import Comment
+from app.models.user import User
 import shutil
 import uuid
 import os
