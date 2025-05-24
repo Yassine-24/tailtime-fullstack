@@ -13,7 +13,6 @@ import uuid
 import os
 from typing import List
 from fastapi import Request
-from app.auth.dependencies import get_current_user
 from app.models.models import Bet
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
