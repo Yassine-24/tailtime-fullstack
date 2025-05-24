@@ -10,6 +10,8 @@ from app.routes import games
 from app.routes import comments
 from app.routes import follow 
 from app.routes.bets_following import router as following_router 
+from app.routes import dev 
+
 
 # Create DB tables
 from app.models import user  # 👈 keeps user model registered
@@ -42,6 +44,7 @@ app.include_router(games.router)
 app.include_router(comments.router)
 app.include_router(follow.router)
 app.include_router(following_router)
+app.include_router(dev.router)
 
 @app.get("/")
 def read_root():
