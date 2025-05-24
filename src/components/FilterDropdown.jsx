@@ -30,7 +30,7 @@ const FilterDropdown = () => {
   const betTypes = ['All', 'Chalk Talk', 'Moneyline', 'Spread', 'Over/Under', 'Total Points', 'Prop Bet'];
 
   return (
-    <div ref={dropdownRef}>
+    <div ref={dropdownRef} className="flex justify-end">
       <div className="relative">
         <button
           onClick={() => setDropdownOpen((prev) => !prev)}
@@ -40,7 +40,7 @@ const FilterDropdown = () => {
         </button>
 
         {dropdownOpen && (
-          <div className="absolute left-0 mt-2 w-max bg-black border border-gray-700 rounded-lg shadow-lg p-4 z-50 min-w-[260px]">
+          <div className="absolute right-0 mt-2 w-max bg-black border border-gray-700 rounded-lg shadow-lg p-4 z-50 min-w-[260px]">
             {/* Sport Filter */}
             <div className="mb-4">
               <div className="font-bold text-sm mb-2 text-purple-400">Sport</div>
