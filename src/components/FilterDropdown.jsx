@@ -64,7 +64,7 @@ const FilterDropdown = () => {
             {/* Bet Type Filter */}
             <div className="mb-4">
               <div className="font-bold text-sm mb-2 text-purple-400">Bet Type</div>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {betTypes.map((type) => (
                   <button
                     key={type}
