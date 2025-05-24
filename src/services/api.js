@@ -15,5 +15,9 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+API.deleteBet = (betId) => {
+  return API.delete(`/bets/${betId}`);
+};
+
 
 export default API;

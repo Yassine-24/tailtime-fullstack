@@ -42,13 +42,21 @@ const Profile = () => {
       console.error('Failed to load profile', err);
     }
   };
+  const handleDeleteBet = async (betId) => {
+  try {
+    await API.deleteBet(betId);
+    fetchProfile(); // Refresh after deletion
+  } catch (err) {
+    console.error("Failed to delete bet", err);
+  }
+};
 
   const myPosts = bets.filter((bet) => bet.user.id === user?.id);
   const myVotes = bets.filter((bet) => votes[bet.id] !== undefined);
   const mySaved = []; // optional future
   const activeList = tab === 'My Bets' ? myPosts : tab === 'My Votes' ? myVotes : mySaved;
 
-  return (
+    return (
     <div className="max-w-7xl mx-auto p-6 text-white min-h-screen">
       {/* Profile Header */}
       {user && (
@@ -83,6 +91,8 @@ const Profile = () => {
               bet={bet}
               vote={votes[bet.id] ?? null}
               onVoteMade={fetchProfile}
+              showDelete={true}
+              onDelete={handleDeleteBet}
             />
           )
         )}

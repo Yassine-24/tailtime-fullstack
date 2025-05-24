@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import API from '../services/api'; // 🧠 Add API import if missing
 
-const BetCard = ({ bet, vote, onVoteMade }) => {
+const BetCard = ({ bet, vote, onVoteMade, showDelete = false, onDelete }) => {
   const [showImageModal, setShowImageModal] = useState(false);
   const [comments, setComments] = useState([]);
   const navigate = useNavigate();
@@ -128,18 +128,39 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
             </div>
           )}
 
-          {/* Voting */}
+          {/* Voting + Delete (optional) */}
           <div className="flex items-center justify-between mt-auto">
-            <VoteButtons
-              betId={bet.id}
-              currentVote={vote}
-              onVoteChange={() => {}}
-              onVoteMade={onVoteMade}
-              customIcons={customIcons}
-            />
+            <div className="flex items-center gap-4">
+              <VoteButtons
+                betId={bet.id}
+                currentVote={vote}
+                onVoteChange={() => {}}
+                onVoteMade={onVoteMade}
+                customIcons={customIcons}
+              />
+
+              {showDelete && (
+                <button
+                  onClick={async () => {
+                    if (confirm("Are you sure you want to delete this bet?")) {
+                      try {
+                        await onDelete?.(bet.id);
+                        alert("✅ Bet deleted successfully.");
+                      } catch (err) {
+                        console.error(err);
+                        alert("❌ Failed to delete bet.");
+                      }
+                    }
+                  }}
+                  className="text-red-500 text-sm hover:underline"
+                >
+                  🗑️ Delete
+                </button>
+              )}
+            </div>
             <button
               onClick={() => navigate(`/bet/${bet.id}`)}
-              className="text-gray-400 text-sm ml-4 hover:underline"
+              className="text-gray-400 text-sm hover:underline"
             >
               💬 {bet.comment_count ?? 0} Comments
             </button>

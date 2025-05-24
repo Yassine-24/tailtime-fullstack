@@ -147,3 +147,18 @@ def get_single_bet(bet_id: int, db: Session = Depends(get_db)):
         "tail_count": tail_count,
         "fade_count": fade_count
     }
+
+@router.delete("/bets/{bet_id}", status_code=204)
+def delete_bet(bet_id: int, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    bet = db.query(Bet).filter(Bet.id == bet_id).first()
+    if not bet:
+        raise HTTPException(status_code=404, detail="Bet not found")
+    if bet.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to delete this bet")
+
+    # Delete related comments and votes first (if cascade is not set)
+    db.query(Comment).filter(Comment.bet_id == bet_id).delete()
+    db.query(Vote).filter(Vote.bet_id == bet_id).delete()
+    db.delete(bet)
+    db.commit()
+    return
