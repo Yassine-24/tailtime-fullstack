@@ -137,9 +137,12 @@ const BetCard = ({ bet, vote, onVoteMade }) => {
               onVoteMade={onVoteMade}
               customIcons={customIcons}
             />
-            <span className="text-gray-400 text-sm ml-4">
+            <button
+              onClick={() => navigate(`/bet/${bet.id}`)}
+              className="text-gray-400 text-sm ml-4 hover:underline"
+            >
               💬 {bet.comment_count ?? 0} Comments
-            </span>
+            </button>
           </div>
         </div>
 

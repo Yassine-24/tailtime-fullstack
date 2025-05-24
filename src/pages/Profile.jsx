@@ -18,7 +18,17 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const res = await API.get('/users/me');
-      setUser(res.data);
+      const userData = res.data;
+
+      // Ensure full URL if needed
+      if (
+        userData.profile_image_url &&
+        !userData.profile_image_url.startsWith('http')
+      ) {
+        userData.profile_image_url = `${import.meta.env.VITE_API_URL}/${userData.profile_image_url.replace(/^static\//, '')}`;
+      }
+
+      setUser(userData);
 
       const betsRes = await API.get('/bets', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
